@@ -1,3 +1,11 @@
+'''
+@Author: Vishal Salaskar
+@Date: 2021-05-20
+@Last Modified by: Vishal Salaskar
+@Last Modified time: 2021-05-20
+@Title : Program to perform basic crud operations
+'''
+
 import mysql.connector
 from mysql.connector import cursor
 
@@ -8,74 +16,115 @@ class CRUD:
 		self.username      = "root"
 		self.password      = "Root@123"
 		self.database_name = "stockmarket" 
-		self.table_name 	 = "stocks_data" 
+		self.__table_name 	 = "stocks_data" 
 		self.createConnection()
 
 	def create(self):
-		print('Enter your stockname:')
-		name = input()
-		print('Enter your price:')
-		address = input()
+		"""
+		Description
+ 		Function To insert value in database table stocks data
+		"""
 
-		cursor = self.db.cursor()
+		try:
+			print('Enter your name:')
+			name = input()
+			print('Enter your address:')
+			address = input()
+		
+			print(e)
+			cursor = self.db.cursor()
 
-		val = (name, address)
-		cursor.execute("INSERT INTO "+self.table_name+" (stockname, stockprice) VALUES (%s, %s)", val)
+			val = (name, address)
+			cursor.execute("INSERT INTO "+self.__table_name+" (stockname, stockprice) VALUES (%s, %s)", val)
 
-		self.db.commit()
+			self.db.commit()
 
-		print(cursor.rowcount, "record inserted.")
+			print(cursor.rowcount, "record inserted.")
+		except ValueError as e:
+			print(e)
 
 	def read(self):
-		cursor = self.db.cursor()
+		"""
+		Description
+ 		Function To read the values from table stocks_data
+		"""
+		
 
-		cursor.execute("SELECT * FROM "+self.table_name+"")
+		try:
+			cursor = self.db.cursor()
 
-		myresult = cursor.fetchall()
+			cursor.execute("SELECT * FROM "+self.__table_name+"")
 
-		for x in myresult:
-		  print(x)
+			myresult = cursor.fetchall()
+
+			for x in myresult:
+				print(x)
+
+		except ValueError as e:
+			print(e)
+
 
 	def update(self):
-		print('Search by id:')
-		id = input()
+		"""
+		Description
+ 		Function To update value in database table stocks data
+		"""
 
-		print('Edit name:')
-		name = input()
+		try:
+			print("Enter id")
+			id = input()
 
+			print('Edit name:')
+			name = input()
 
-		print('Edit price:')
-		price = input()
+			print('Edit price:')
+			price = input()
+				
+			cursor = self.db.cursor()
+			val = (name,price,id)
 
-	
-		cursor = self.db.cursor()
-		val = (name,price,id)
+			cursor.execute("update " +self.__table_name+ " set stockname=%s, stockprice=%s where stockid=%s",val)
 
-		cursor.execute("update " +self.table_name+ " set stockname=%s, stockprice=%s where stockid=%s",val)
+			self.db.commit()
 
-		self.db.commit()
+			print(cursor.rowcount, "record update.")
 
-		print(cursor.rowcount, "record update.")
+		except ValueError as e:
+			print(e)	
 
 	def delete(self):
-		print('Search by id to delete:')
-		stockid = input()
-		
-		cursor = self.db.cursor()
+		"""
+		Description
+ 		Function To delete value in database table stocks data
+		"""
 
-		cursor.execute("DELETE FROM "+self.table_name+" WHERE stockid=%s", (stockid,))
+		try:
+			print('Search by id to delete:')
+			stockid = input()
+						
+			cursor = self.db.cursor()
 
-		self.db.commit()
+			cursor.execute("DELETE FROM "+self.__table_name+" WHERE stockid=%s", (stockid,))
 
-		print(cursor.rowcount, "record deleted")
+			self.db.commit()
+
+			print(cursor.rowcount, "record deleted")
+		except ValueError as e:
+			print(e)
 
 
 	def createConnection(self):
-		db = mysql.connector.connect(
-		  host     = self.localhost,
-		  user     = self.username,
-		  passwd   = self.password,
-		  database = self.database_name
-		)
+		"""
+		Description
+ 		Function To create connection to the database
+		"""
 
+		db = mysql.connector.connect(
+		host     = self.localhost,
+		user     = self.username,
+		passwd   = self.password,
+		database = self.database_name
+		)
 		self.db = db
+	
+	
