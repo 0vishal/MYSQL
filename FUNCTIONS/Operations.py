@@ -35,6 +35,10 @@ class Operations:
             print(e)      
 
     def get_string_length(self):
+        """
+        Description:
+        Function : To get the string length of string values
+        """
         try:
             cursor = self.db.cursor()
             cursor.execute("SELECT tradername, CHAR_LENGTH(tradername) AS LengthOfName FROM traders")
@@ -46,6 +50,10 @@ class Operations:
             print(e) 
 
     def concatenate_data(self):
+        """
+        Description:
+        Function : To get the concatenation of columns from tables in database
+        """
         try:
             cursor = self.db.cursor()
             cursor.execute("SELECT sectors, CONCAT(stockname,stockprice) AS data FROM stocks_data;")
@@ -57,6 +65,10 @@ class Operations:
             print(e)
 
     def get_lowercase(self):
+        """
+        Description:
+        Function : To get the lower case of the string in column in databases
+        """
         try:
             cursor = self.db.cursor()
             cursor.execute("SELECT LCASE(tradername) AS Lowercasename FROM traders;")
@@ -68,6 +80,10 @@ class Operations:
             print(e)  
 
     def get_chars(self):
+        """
+        Description:
+        Function : To get specific characters from the string in column from table
+        """
         try:
             cursor = self.db.cursor()
             cursor.execute("SELECT LEFT(tradername, 3) AS nicekname FROM traders;")
@@ -79,6 +95,10 @@ class Operations:
             print(e)
 
     def get_reverse(self):
+        """
+        Description:
+        Function : To get the reverse the string of a column 
+        """
         try:
             cursor = self.db.cursor()
             cursor.execute("SELECT REVERSE(tradername) FROM traders;")
@@ -90,6 +110,10 @@ class Operations:
             print(e) 
 
     def get_uppercase(self):
+        """
+        Description:
+        Function : To get the uppper case of the string in column
+        """
         try:
             cursor = self.db.cursor()
             cursor.execute("SELECT UPPER(tradername) AS UppercaseName FROM traders;")
@@ -101,6 +125,10 @@ class Operations:
             print(e) 
 
     def get_count(self):
+        """
+        Description:
+        Function : To get the count of number of records in a column
+        """
         try:
             cursor = self.db.cursor()
             cursor.execute("SELECT COUNT(tradername) AS numberoftraders FROM traders")
@@ -112,6 +140,10 @@ class Operations:
             print(e)   
 
     def get_max(self):
+        """
+        Description:
+        Function : To get the maximum value from the number of records in a given column
+        """
         try:
             cursor = self.db.cursor()
             cursor.execute("SELECT MAX(stockprice) AS LargestPrice FROM stocks_data")
@@ -123,6 +155,10 @@ class Operations:
             print(e)  
 
     def get_min(self):
+        """
+        Description:
+        Function : To get the minimum from number of records in a column
+        """
         try:
             cursor = self.db.cursor()
             cursor.execute("SELECT MIN(stockprice) AS Smallestprice FROM stocks_data")
@@ -134,6 +170,10 @@ class Operations:
             print(e) 
 
     def get_sum(self):
+        """
+        Description:
+        Function : To get the sum of values in a columns
+        """
         try:
             cursor = self.db.cursor()
             cursor.execute("SELECT SUM(stockprice) AS Sumprice FROM stocks_data")
@@ -145,6 +185,10 @@ class Operations:
             print(e) 
 
     def get_date(self):
+        """
+        Description:
+        Function : To get the current date
+        """
         try:
             cursor = self.db.cursor()
             cursor.execute("SELECT CURDATE();")
@@ -155,6 +199,10 @@ class Operations:
             print(e) 
 
     def get_time(self):
+        """
+        Description:
+        Function : To get the current time 
+        """
         try:
             cursor = self.db.cursor()
             cursor.execute("SELECT CURTIME();")
@@ -165,6 +213,10 @@ class Operations:
             print(e)             
     
     def get_day(self):
+        """
+        Description:
+        Function : To get the current day 
+        """
         try:
             cursor = self.db.cursor()
             cursor.execute("SELECT DAY(CURDATE());")
@@ -177,6 +229,10 @@ class Operations:
 
 
     def get_dayname(self):
+        """
+        Description:
+        Function : To get the current day name
+        """
         try:
             cursor = self.db.cursor()
             cursor.execute("SELECT DAYNAME(CURDATE());")
@@ -188,6 +244,10 @@ class Operations:
             print(e)  
 
     def get_month(self):
+        """
+        Description:
+        Function : To get the current month 
+        """
         try:
             cursor = self.db.cursor()
             cursor.execute("SELECT MONTH(CURDATE());")
@@ -199,6 +259,10 @@ class Operations:
             print(e)
 
     def get_monthname(self):
+        """
+        Description:
+        Function : To get the current month name
+        """
         try:
             cursor = self.db.cursor()
             cursor.execute("SELECT MONTHNAME(CURDATE());")
@@ -211,6 +275,10 @@ class Operations:
 
 
     def get_currentuser(self):
+        """
+        Description:
+        Function : To get the current user 
+        """
         try:
             cursor = self.db.cursor()
             cursor.execute("SELECT CURRENT_USER();")
@@ -222,6 +290,10 @@ class Operations:
             print(e)    
 
     def get_database(self):
+        """
+        Description:
+        Function : To get the database name
+        """
         try:
             cursor = self.db.cursor()
             cursor.execute("SELECT DATABASE();")
